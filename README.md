@@ -1,6 +1,7 @@
 * Враппер на Python для [SDC API](https://docs.server-discord.com)
 * Документация к API: https://docs.server-discord.com/
 
+Врапера на pyPI нету, ведь они хуесосы. Делайте, что хотите, просто мне не нравился их обрыганный враппер!
 Семпл
 
 ```py
