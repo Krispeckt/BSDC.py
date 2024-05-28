@@ -1,16 +1,31 @@
 [build-system]
-requires = ["poetry_core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-name = "BSDC.py"
+[project]
+name = "BSDC"
 version = "2.0.0"
-authors = ["Kristaa"]
-homepage = "https://github.com/Krispeckt/BSDC.py"
+authors = [
+  { name="Krista", email="contactchisato@gmail.com" },
+]
 description = ""
-dynamic = ["dependencies"]
 readme = "README.md"
+dynamic = ["dependencies"]
 requires-python = ">=3.11"
+classifiers = [
+        "Intended Audience :: Developers",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Internet",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Utilities",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Krispeckt/BSDC.py"
 
 [tool.poetry.dependencies]
 pip = "24.0"
@@ -28,3 +43,14 @@ dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.package-data]
 lavamystic = ["py.typed"]
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+
+[tool.pyright]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+reportPrivateUsage = false
