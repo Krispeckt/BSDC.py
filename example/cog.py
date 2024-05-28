@@ -1,38 +1,31 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from disnake.ext.commands import Cog
-from disnake.ext.tasks import loop
+from loguru import logger
 
-from disnake_sdc import SDCClient
+from BSDC import BSDCClient
 
 if TYPE_CHECKING:
     from disnake.ext.commands import Bot
 
 
-class SDC(Cog):
-    def __init__(self, bot: "Bot") -> None:
+class BSDC(Cog):
+    def __init__(self, bot: Bot) -> None:
         self.bot = bot
 
-        self.sdc_client = SDCClient(
-            bot=self.bot,
-            sdc_token="YOUR_TOKEN_HERE",
-            on_success=self.on_success
-        )
+        self.bsdc_client = BSDCClient(bot, "YOUR_TOKEN")
 
     async def cog_load(self) -> None:
-        await self.bot.wait_until_first_connect()
-        self.sdc_post_task.start()
+        await self.bsdc_client.start_auto_post(self.on_success())
 
     def cog_unload(self) -> None:
-        self.sdc_post_task.cancel()
+        self.bsdc_client.stop_auto_post()
 
     async def on_success(self) -> None:
-        print("SUCCESS POSTED")
-
-    @loop(minutes=50)
-    async def sdc_post_task(self) -> None:
-        await self.sdc_client.post()
+        logger.info("Successfully posted bot statistics to B.SDC monitoring.")
 
 
-def setup(bot: "Bot") -> None:
-    return bot.add_cog(SDC(bot))
+def setup(bot: Bot) -> None:
+    return bot.add_cog(BSDC(bot))

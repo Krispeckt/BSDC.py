@@ -1,0 +1,30 @@
+[build-system]
+requires = ["poetry_core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "BSDC.py"
+version = "2.0.0"
+authors = ["Kristaa"]
+homepage = "https://github.com/Krispeckt/BSDC.py"
+description = ""
+dynamic = ["dependencies"]
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.poetry.dependencies]
+pip = "24.0"
+python = "^3.11"
+aiohttp = "3.9.4"
+disnake = "2.9.2"
+loguru = "^0.7.2"
+asyncio = "^3.4.3"
+
+[tool.setuptools]
+packages = ["BSDC", "BSDC.exceptions"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.package-data]
+lavamystic = ["py.typed"]

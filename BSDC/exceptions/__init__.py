@@ -5,7 +5,9 @@ T = TypeVar("T")
 __all__ = (
     "IsNotCoro",
     "WaitMore",
-    "UnknownException"
+    "UnknownException",
+    "ClientNotFound",
+    "TaskNotFound"
 )
 
 
@@ -26,3 +28,13 @@ class WaitMore(Exception):
 class UnknownException(Exception):
     def __init__(self, message: str) -> None:
         super().__init__(message)
+
+
+class ClientNotFound(Exception):
+    def __init__(self) -> None:
+        super().__init__("BSDC client not found! Please create it again! BSDCClient.create()")
+
+
+class TaskNotFound(Exception):
+    def __init__(self) -> None:
+        super().__init__("Task not found!")
