@@ -23,7 +23,9 @@ classifiers = [
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
 ]
-homepage = "https://github.com/Krispeckt/BSDC.py"
+
+[project.urls]
+"Homepage" = "https://github.com/Krispeckt/BSDC.py"
 
 [tool.poetry.dependencies]
 pip = "24.0"
